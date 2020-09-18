@@ -3,7 +3,6 @@ const  User = require('../models/User.js');
 const userController = {
     //get all users
     getAllUsers(req, res) {
-        // console.log(`User: ${User}`)
         User.find({})
             .then(userData => res.json(userData))
             .catch(err => {
@@ -14,7 +13,7 @@ const userController = {
     //get single user by ID
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
-            //include thought data
+            // include thought data
             // .populate({
             //     path: 'thoughts',
             //     select: '-__v'
