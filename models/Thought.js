@@ -1,5 +1,5 @@
 //thought and reaction schemas
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 
 
@@ -45,7 +45,8 @@ const ThoughtSchema = new Schema({
         type: String,
         required: true
     },
-    reactions: [ReactionSchema]
+    reactions: 
+    [ReactionSchema]
 },
     {
         toJSON: {

@@ -69,14 +69,12 @@ const thoughtController = {
     },
 
     addReaction({ params, body}, res) {
-       //confirmed function is entered
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            {$push: {reactions:body}},//WHY WON'T THIS WORK???
+            {$push: {reactions:body}},
             { new: true}
         )
             .then(thoughtData => {
-              console.log(thoughtData);
                 if (!thoughtData) {
                     res.status(404).json({ message: 'No thought with that id' });
                     return;
