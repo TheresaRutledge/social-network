@@ -41,7 +41,7 @@ const ThoughtSchema = new Schema({
         default: Date.now,
         get: (createdAtVal) => moment(createdAtVal).format('MMM DD, YYY [at] hh:mm a')
     },
-    username: {//user that created this thought
+    username: {
         type: String,
         required: true
     },

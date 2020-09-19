@@ -1,4 +1,5 @@
 const  User = require('../models/User.js');
+const Thought = require('../models/Thought.js');
 
 const userController = {
     //get all users
@@ -14,15 +15,15 @@ const userController = {
     getUserById({ params }, res) {
         User.findOne({ _id: params.id })
             // include thought data
-            // .populate({
-            //     path: 'thoughts',
-            //     select: '-__v'
-            // })
+            .populate({
+                path: 'thoughts',
+                select: '-__v'
+            })
             .populate({
                 path: 'friends',
                 select: '-__v'
             })
-            // .select('-__v')
+            .select('-__v')
             .then(userData => {
                 //if no user found
                 if (!userData) {
@@ -68,7 +69,7 @@ const userController = {
                 res.status(404).json({message:'No user with that id'});
                 return;
             }
-            // Thought.remove({username:this.username}).exec(); //remove associated thoughts
+            Thought.remove({username:this.username}).exec(); //remove associated thoughts
             res.json(userData);
         })
         .catch(err => res.status(400).json(err));
